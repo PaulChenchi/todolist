@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人資料</title>
+</head>
+
+<body>
+
+    {% if user.is_authenticated %}
+    <h1>Profile</h1>
+    <a href="{% url 'logout' %}">登出</a>
+    <ul>
+        <li>SuperUser:{{user.is_superuser}}</li>
+        <li>Login:{{user.username}} </li>
+        <li>Email:{{user.email}} </li>
+        <li>Joined:{{user.date_joined}} </li>
+        <li>Lastlogin:{{user.last_login}}</li>
+    </ul>
+    {% else %}
+    <h1>請先登入或註冊</h1>
+    <a href="{% url 'login'%}">login</a><br>
+    <a href="{% url 'register'%}">Register</a>
+    {% endif %}
+
+
+
+</body>
+
+</html>
