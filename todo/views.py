@@ -8,6 +8,11 @@ from .models import Todo
 # 重要代辦事項顯示紅色
 
 
+def viewtodo(request, id):
+    todo = Todo.objects.get(id=id)
+    return render(request, "todo/viewtodo.html", {"todo": todo})
+
+
 def todo(request):
     # all,filter,get
     user = request.user

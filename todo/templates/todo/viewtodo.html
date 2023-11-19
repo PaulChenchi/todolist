@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+單一事項
+{% endblock %}
+{% block content %}
+<h1>ViewTodolist</h1>
+<small>{{todo.created}}</small>
+<h2>{{todo.title}}</h2>
+待辦內容: <br>
+<p>{{todo.text}}</p>
+<a href="{% url 'todo' %}">返回列表</a>
+
+{% endblock %}
