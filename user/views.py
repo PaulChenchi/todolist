@@ -3,16 +3,19 @@ from django.http import HttpResponse  # 封裝套件
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 # 功能都在這寫
 
 
+@login_required
 def user_logout(request):
     logout(request)
     return redirect("login")
 
 
+@login_required
 def profile(request):
     user = request.user
     return render(request, "user/profile.html", {"user": user})
