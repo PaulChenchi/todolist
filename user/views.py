@@ -37,7 +37,8 @@ def user_login(request):
                 else:
                     login(request, user)
                     message = "登入成功!"
-                    return redirect("profile")
+                    # return redirect("profile")
+                    return redirect("todo")
 
             print(user)
         # if username in User.objects.filter():
@@ -67,6 +68,7 @@ def register(request):
                 user = User.objects.create_user(username=username, password=password1)
                 user.save
                 message = "註冊成功!"
+                return redirect("login")
 
     form = UserCreationForm()
     return render(request, "user/register.html", {"form": form, "message": message})

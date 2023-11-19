@@ -19,6 +19,7 @@ from django.urls import path, include  # 引用外部設定
 
 
 urlpatterns = [
+    path("", include("todo.urls")),
     path("", include("user.urls")),
     path("admin/", admin.site.urls),
 ]

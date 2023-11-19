@@ -58,15 +58,21 @@
     a:visited {
         color: yellow;
     }
+
+    #navbar {
+        color: #00ced1;
+        font-size: 0.7cm;
+    }
 </style>
 
 <body>
     <div id="navbar">
-        <span class="title">Todolist</span>
+        <span class="title"><a href="{% url 'todo' %}">Todolist</a></span>
 
         {% if user.is_authenticated %}
 
-        使用者:<span class="username">{{user.username}}</span><a href="{% url 'logout' %}">登出</a>
+        使用者:<span class="username"><a href="{% url 'profile' %}">{{user.username}}</a></span><a
+            href="{% url 'logout' %}">登出</a>
         {% else %}
 
         <a href="{% url 'login'%}" class="login">登入</a>
