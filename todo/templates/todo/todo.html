@@ -12,7 +12,12 @@
 <ul>
     <li>
         <h3 {% if todo.important %} style="color: red;" {% endif %}>
-            <a href="{% url 'viewtodo' todo.id %}">{{todo.title}}</a>
+            <a href="{% url 'viewtodo' todo.id %}">
+                {% if todo.completed %}
+                <s>{{todo.title}}</s>
+                {% else %}
+                {{todo.title}}
+                {% endif %}</a>
         </h3>
     </li>
     <li>

@@ -4,10 +4,20 @@
 {% endblock %}
 {% block content %}
 <h1>ViewTodolist</h1>
-<small>{{todo.created}}</small>
+<small>{{todo.created}}</small> <br>
+{% if todo.completed %}
+<h3>完成時間:{{todo.date_completed}}</h3><br>
+{% endif %}
 <h2>{{todo.title}}</h2>
 待辦內容: <br>
 <p>{{todo.text}}</p>
 <a href="{% url 'todo' %}">返回列表</a>
+<h2>編輯資訊</h2>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">更新
+    </button>
+</form>
 
 {% endblock %}
