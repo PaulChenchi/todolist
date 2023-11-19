@@ -1,11 +1,23 @@
 from django.shortcuts import render, HttpResponse
 from .models import Todo
+from .forms import TodoForm
 
 # Create your views here.
 
-# 登入=>首頁
-# 如果沒有代辦事項==>提示無代辦事項
-# 重要代辦事項顯示紅色
+
+def createtodo(request):
+    form = TodoForm()  # 這個概念是啥
+    message = ""
+
+    if request.method == "POST":
+        print(request.POST)
+        form = TodoForm(request.POST)
+        todo = form.save(commit=False)
+        todo.user = request.user
+        todo.save()
+        message = "建立todo成功"
+
+    return render(request, "todo/createtodo.html", {"form": form, "message": message})
 
 
 def viewtodo(request, id):
