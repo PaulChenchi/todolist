@@ -75,6 +75,7 @@
         使用者:<span class="username"><a href="{% url 'profile' %}">{{user.username}}</a></span><a
             href="{% url 'logout' %}">登出</a>
         <a href="{% url 'createtodo'%}">新增待辦</a>
+        <a href="{% url 'completed'%}">完成事項</a>
         {% else %}
 
         <a href="{% url 'login'%}" class="login">登入</a>
