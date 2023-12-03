@@ -86,13 +86,15 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "todolist",
-        "USER": "root",
-        "PASSWORD": "12345678",
-        "HOST": "127.0.0.1",
+        "USER": "aws_root",
+        "PASSWORD": "tp6fu371!",
+        "HOST": "database-1.cyyccblgolkh.ap-northeast-1.rds.amazonaws.com",
         "PORT": "3306",
     }
 }
-
+# todolist
+# aws_root
+# tp6fu371!
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
