@@ -1,25 +1,5 @@
-<!-- {% extends 'base.html' %}
-{% block title %}
-已完成事項
-{% endblock %}
-{% block content %}
-<h1>CompletedList</h1>
-
-{% if todo.completed %}
-<h2>{{todo.title}}</h2>
-內容: <br>
-<p>{{todo.text}}</p>
-{% endif %}
-<a href="{% url 'todo' %}">返回列表</a>
-
-
-
-{% endblock %} -->
-
 {% extends 'base.html' %}
-{% block title %}
-待辦事項
-{% endblock %}
+
 {% block style %}
 <style>
     .button {

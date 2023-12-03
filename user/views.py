@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from .forms import NewUserForm
 
 # Create your views here.
 # 功能都在這寫
@@ -29,21 +30,26 @@ def user_login(request):
         elif request.POST.get("login"):
             username = request.POST["username"]
             password = request.POST["password"]
+            email = request.POST["email"]
             user = User.objects.filter(username=username)
-
+            print(username, email)
             if not user:
                 message = "無此帳號!"
             else:
-                user = authenticate(request, username=username, password=password)
-                if not user:
-                    message = "密碼錯誤!"
+                user = user[0]
+                if user.email != email:
+                    # if not User.objects.filter(username=username, email=email):
+                    message = "email不正確!"
                 else:
-                    login(request, user)
-                    message = "登入成功!"
-                    # return redirect("profile")
-                    return redirect("todo")
-
-            print(user)
+                    user = authenticate(request, username=username, password=password)
+                    if not user:
+                        message = "密碼錯誤!"
+                    else:
+                        login(request, user)
+                        message = "登入成功!"
+                        # return redirect("profile")
+                        return redirect("todo")
+        print(user)
         # if username in User.objects.filter():
         #     print(User.objects.filter("username"))
 
@@ -58,6 +64,9 @@ def register(request):
         username = request.POST["username"]
         password1 = request.POST["password1"]
         password2 = request.POST["password2"]
+        email = request.POST["email"]
+
+        print(email)
 
         if password1 != password2:
             message = "輸入密碼不相同!"
@@ -68,10 +77,13 @@ def register(request):
             if User.objects.filter(username=username):
                 message = "帳號重複!"
             else:
-                user = User.objects.create_user(username=username, password=password1)
+                user = User.objects.create_user(
+                    username=username, password=password1, email=email
+                )
                 user.save
                 message = "註冊成功!"
+                request.session["username"] = username
                 return redirect("login")
 
-    form = UserCreationForm()
+    form = NewUserForm()
     return render(request, "user/register.html", {"form": form, "message": message})
