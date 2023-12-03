@@ -1,0 +1,55 @@
+.username {
+    color: white;
+    font-size: 0.8cm;
+    padding-right: 10px;
+}
+
+#navbar {
+    background-color: darkblue;
+    border-radius: 5px;
+}
+
+body {
+    background-color: aliceblue;
+}
+
+.register {
+    background-color: green;
+}
+
+.login {
+    background-color: red;
+}
+
+a {
+    background-color: #4682b4;
+    color: #e6e6fa;
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 0.6cm;
+    text-decoration: none;
+
+}
+
+label {
+    background-color: #d2b48c;
+    font-size: 0.42cm;
+    width: 18px;
+    border-radius: 3px;
+}
+
+.title {
+    padding-right: 24px;
+    padding-left: 12px;
+    color: white;
+    font-size: 0.6cm;
+}
+
+a:visited {
+    color: yellow;
+}
+
+#navbar {
+    color: #00ced1;
+    font-size: 0.7cm;
+}
