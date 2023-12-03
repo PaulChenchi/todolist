@@ -15,25 +15,71 @@
 </head>
 
 <body>
-    <div id="navbar">
-        <span class="title"><a href="{% url 'todo' %}">Todolist</a></span>
+    <nav class="navbar has-background-warning" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand ">
+            <a class="navbar-item" href="{% url 'todo' %}">
+                <!-- <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"> -->
+                <!-- <img src="../static/img/下載 (1).png" width="112" height="50"> -->
+                <!-- <img src="../static/img/下載 (1).png"> -->
+                <img src="{% static 'img/images (2).jpg' %}">
+                <!-- <img src="{% static 'img/images (1).jpg' %}"> -->
+            </a>
 
-        {% if user.is_authenticated %}
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
 
-        使用者:<span class="username"><a href="{% url 'profile' %}">{{user.username}}</a></span><a
-            href="{% url 'logout' %}">登出</a>
-        <a href="{% url 'createtodo'%}">新增待辦</a>
-        <a href="{% url 'completed'%}">完成事項</a>
-        {% else %}
+        <div id="navbarBasicExample" class="navbar-menu">
+            {% if user.is_authenticated %}
+            <div class="navbar-start">
+                <a class="navbar-item has-text-link" href="{% url 'profile' %}">
+                    {{user.username}}
+                </a>
 
-        <a href="{% url 'login'%}" class="login">登入</a>
-        <a href="{% url 'register'%}" class="register">註冊</a>
-        {% endif %}
-    </div>
+                <a class="navbar-item has-text-danger" href="{% url 'logout' %}">
+                    登出
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        更多
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="{% url 'createtodo'%}">
+                            新增待辦
+                        </a>
+                        <a class="navbar-item" href="{% url 'completed'%}">
+                            完成事項
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary" href="{% url 'register'%}">
+                            <strong>註冊</strong>
+                        </a>
+                        <a class="button is-light" href="{% url 'login'%}">
+                            登入
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+
     {% block content %}
-
     {% endblock %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </body>
 
 </html>
