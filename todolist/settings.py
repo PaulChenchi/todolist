@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
+# 註冊功能
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "user.apps.UserConfig",
     "todo.apps.TodoConfig",
+    "api.apps.ApiConfig",
 ]
 
 MIDDLEWARE = [
@@ -84,19 +86,29 @@ WSGI_APPLICATION = "todolist.wsgi.application"
 #     }
 # }
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "todolist",
-        "USER": "aws_root",
-        "PASSWORD": "tp6fu371!",
-        "HOST": "database-1.cyyccblgolkh.ap-northeast-1.rds.amazonaws.com",
+        "USER": "root",
+        "PASSWORD": "12345678",
+        "HOST": "127.0.0.1",
         "PORT": "3306",
     }
 }
+
+
 # todolist
 # aws_root
 # tp6fu371!
+# "HOST": "database-1.cyyccblgolkh.ap-northeast-1.rds.amazonaws.com",
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
