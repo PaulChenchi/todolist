@@ -31,15 +31,53 @@ def convert_date(date, format="%Y-%m-%d %H:%M:%S"):
 
 
 @csrf_exempt
+def update_todo_api(request, id):
+    success = True
+    if request.method == "PUT":
+        try:
+            data = json.loads(request.body)
+            todo = Todo.objects.get(id=id)
+            user = (
+                User.objects.get(username=data.get("user"))
+                if data.get("user")
+                else todo.user
+            )
+
+            # if data.get("user"):
+            #     user = User.objects.get(username=data.get("user"))
+            # else:
+            #     user=todo.user
+
+            todo.title = data.get("title", todo.title)
+            todo.text = data.get("text", todo.text)
+            todo.date_completed = data.get("date_completed", todo.date_completed)
+            todo.important = data.get("important", todo.important)
+            todo.completed = data.get("completed", todo.completed)
+
+            todo.user = user
+            todo.save()
+
+            message = {
+                "success": success,
+                "todo_id": todo.id,
+                "message": "更新資料成功",
+            }
+
+        except Exception as e:
+            print(e)
+            success = False
+            message = {"success": success, "message": str(e)}
+        response_data = json.dumps(message, ensure_ascii=False)  # 組成json格式
+        return HttpResponse(response_data, content_type="application/json")
+
+
+@csrf_exempt
 def add_todo_api(request):
     success = True
     if request.method == "POST":
         try:
             data = json.loads(request.body)
-            print(data)
-
             user = User.objects.get(username=data.get("user"))
-
             todo = Todo.objects.create(
                 title=data.get("title"),
                 text=data.get("text"),
